@@ -1,0 +1,1 @@
+   body{      font: 10pt Verdana,sans-serif;      color: brown;   }   .trigger{      cursor: pointer;      cursor: hand;      display: block;   }   .ALPHA{      display: none;      margin-left: 16px;   }   .PLACE{      display: none;      margin-left: 14px;   }   a{      text-decoration: none;   }   a:hover{      text-decoration: underline;   }

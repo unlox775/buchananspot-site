@@ -1,0 +1,193 @@
+<html>
+<head>
+<title>laanjak</title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<SCRIPT LANGUAGE="JavaScript" SRC="calwork.js"></SCRIPT>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="istart.js"></SCRIPT>
+
+<SCRIPT LANGUAGE="JavaScript">
+<!-- hide from old browsers
+
+var daDate = new Date();
+var dd=daDate.getDate();
+var mm=daDate.getMonth();
+var yy=daDate.getFullYear();
+var hrs=daDate.getHours();
+var mns=daDate.getMinutes();
+var colon = ":";
+if (mns<10) { colon = ":0"; } else { colon = ":"; }
+var timeTxt = monthName(mm) + " " + dd + ", " + yy + " " + hrs + colon + mns;
+var theCanvas = null; // later assigned theCanvas = document.getElementById("theCanvas");
+var theColor = "black";
+
+var theVis = "visible";
+var theWDiv = null;
+var theTDiv = null;
+var gizmo = "http://banners.wunderground.com/banner/gizmotimetemp/US/UT/Salt_Lake_City.gif";
+
+// end of script hiding 1 -->
+</SCRIPT>
+<SCRIPT LANGUAGE="JavaScript">
+<!-- hide from old browsers
+
+function makeImgRect(x,y,w,h,u) {
+	var oDiv = document.createElement('div');
+	theCanvas.appendChild(oDiv);
+
+	oDiv.style.position = "absolute";
+	oDiv.style.margin = "0px";
+	oDiv.style.padding = "0px";
+	oDiv.style.overflow = "hidden";
+	oDiv.style.border = "1px";
+
+	// set attributes
+	oDiv.style.zIndex = 0;
+	// oDiv.style.backgroundColor = "White";
+	oDiv.innerHTML = "<img src=\"" + u + "\" width=" + w + " height=" + h + ">";
+	oDiv.style.left = x;
+	oDiv.style.top = y;
+	oDiv.style.width = w + "px";
+	oDiv.style.height = h + "px";
+
+	oDiv.style.visibility = theVis; // "visible";
+	
+	return oDiv;
+}
+
+function makeTextRect(x,y,w,h,txt,doBorder,bkColor,fSiz,fFam,fWgt,tAln) {
+	var oDiv = document.createElement('div');
+	theCanvas.appendChild(oDiv);
+
+	oDiv.style.position = "absolute";
+	oDiv.style.margin = "0px";
+	oDiv.style.padding = "0px";
+	oDiv.style.overflow = "hidden";
+	if (doBorder==1) {
+	  oDiv.style.border = "1px solid black";
+	}
+	else {
+	  oDiv.style.border = "0px";
+	}
+
+	// set attributes
+	oDiv.style.zIndex = 0;
+	oDiv.style.backgroundColor = bkColor;
+
+	oDiv.innerHTML = txt;
+	oDiv.style.fontSize = fSiz; // font sizes
+	oDiv.style.fontFamily = fFam; // e.g. Monaco, Ariel
+	oDiv.style.fontWeight = fWgt; // Bold or Normal
+	oDiv.style.textAlign = tAln;
+	oDiv.style.left = x;
+	oDiv.style.top = y;
+	oDiv.style.width = w + "px";
+	oDiv.style.height = h + "px";
+
+
+	oDiv.style.visibility = theVis; // "visible"
+	
+	return oDiv;
+}
+
+function removeRect(theDiv) {
+	theCanvas.removeChild(theDiv);
+}
+
+function weatherPane() {
+	if (theWDiv != null)  { removeRect(theWDiv); }
+	theWDiv = makeImgRect(165,135,127,41,gizmo);
+}
+
+function timePane() {
+	if (theTDiv != null) { removeRect(theTDiv); }
+	daDate = new Date();
+	dd=daDate.getDate();
+	mm=daDate.getMonth();
+	hrs=daDate.getHours();
+	mns=daDate.getMinutes();
+	if (mns<10) { colon = ":0"; } else { colon = ":"; }
+	timeTxt = monthName(mm) + " " + dd + ", " + yy + " " + hrs + colon + mns;
+	theTDiv = makeTextRect(140,180,170,15,timeTxt,1,"white",12,"Courier","Normal","Center");
+}
+
+// end of script hiding 15 -->
+</SCRIPT>
+</head>
+<body bgcolor="#CCFFFF">
+<div id="theCanvas" style="position:absolute; left:10px; top:10px; width:350px; height:750px; overflow:hidden;">
+<img border=2 width=292 height=131 align=top src="images/Lone-Peak.jpg" ALT =" My view of the Lone Peak">
+<script type="text/JavaScript">
+theCanvas = document.getElementById("theCanvas");
+weatherPane();
+timePane();
+</script>
+<img width="125" height="125" vspace="4" ALIGN=bottom src="http://buchananspot.com/images/MomDad/JosephShauna.jpg"
+ALT = "Joseph and Shauna at beach, Crescent City, CA">
+<h4>Joseph and Shauna Buchanan</h4>
+Lottridge,  Ohio
+<br>laanjak<img width="7" height="9" src="at.gif"
+ALT = "at">gmail.com</a>
+<p><cite> last update - 8 Dec 2021 </cite>
+
+
+</div>
+<div id="navinfo" style="position:absolute; left:360px; top:10px; width:600px; height:800px; overflow:hidden;">
+<p align=right>
+<form method="POST" action="" name ="calendar" id ="calendar">
+<BUTTON name="prevButton" type="button" value="prevButton" id="prevButton" onMouseUp=doPrevMon()>
+<IMG src="left.gif" alt="previous month">
+</BUTTON>
+<BUTTON name="nextButton" type="button" value="nextButton" id="nextButton" onMouseUp =doNextMon()>
+<IMG src="right.gif" alt="next month">
+</BUTTON>
+<br>
+<TEXTAREA name="calDisplay" readonly rows = "13" cols = "30" wrap = "off" style="font-family: Courier; font-size: 9pt; border-style: none; overflow:hidden; BACKGROUND-COLOR: #FFFFFF">
+</TEXTAREA>
+	<script type="text/javascript">
+	function doPrevMon() {
+	  mm -= 1;
+	  if (mm<0) {
+	    mm = 11;
+	    yy -= 1;
+	  }
+	  document.calendar.calDisplay.value = "\n" + makeCalendar(yy,mm,0,1) + "\n" + "Julian day number: " + JDNcalc(yy,mm+1,1) + "\n" + "HH date: " + HHdate(yy,mm+1,1);
+	}
+	function doNextMon() {
+	  mm += 1;
+	  if (mm>11) {
+	    mm = 0;
+	    yy += 1;
+	  }
+	  document.calendar.calDisplay.value = "\n" + makeCalendar(yy,mm,0,1) + "\n" + "Julian day number: " + JDNcalc(yy,mm+1,1) + "\n" + "HH date: " + HHdate(yy,mm+1,1);
+	}
+	</script>
+</form>
+<SCRIPT LANGUAGE="JavaScript">
+<!-- hide from old browsers
+document.calendar.calDisplay.value = "\n" + makeCalendar(yy,mm,0,1) + "\n" + "Julian day number: " + JDNcalc(yy,mm+1,dd) + "\n" + "HH date: " + HHdate(yy,mm+1,dd);
+// end of script hiding -->
+</SCRIPT>
+
+<br>
+<b>Links, etc.</b>
+<br><a href="http://www.utah.edu/">U of U</a>, 
+
+<br><a href="http://buchananspot.com/">the Buchanan Spot</a>
+. . . <A HREF="genealogy/">Genealogy</a>
+. . . <a href="https://www.umail.utah.edu">UofU Webmail</a>
+<br><a href="https://universityfcu.financialhost.org/Login">CU</a> . <a href="http://www.tiaa-cref.org/public/about/index.html">TIAA/CREF</a>
+<br><A href = "NewsEtc.html">News Etc.</A>
+. . . <a HREF="hall_of_fame.html">UUCC People</a>, <a href="UUCCHistory.html"> and history</a>
+. . . <A HREF="personal.html">my family</a>
+. . . <a href="my_bookmarks.html">my bookmarks</a>
+<br>
+
+</p>
+<br>
+<img src="http://commuterlink.utah.gov/1_devices/aux308.jpeg" alt="camera in West Jordan" width="320" height="240">
+<hr> <i>This Page Last updated: 12/8/2021</i>
+</div>
+
+</body>
+</html>
